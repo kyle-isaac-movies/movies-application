@@ -1,10 +1,71 @@
 {
   "movies": [
     {
-      "id": 1,
-      "title": "Shrek",
+      "title": "Blade Runner",
       "rating": 5,
-      "summary": "An embittered ogre named Shrek (Myers) finds his home in the swamp overrun by fairy tale creatures banished by the obsessive ruler Lord Farquaad (Lithgow). With the help of Donkey (Murphy), Shrek makes a pact with Farquaad to rescue Princess Fiona (Diaz) in exchange for regaining control of his swamp."
+      "genre": "Science-fiction action",
+      "movieSummary": "A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator.",
+      "id": 1
+    },
+    {
+      "id": 3,
+      "title": "Misery",
+      "director": "Rob Reiner",
+      "released": 1990,
+      "rating": 4,
+      "genre": "Thriller",
+      "movieSummary": "After a famous author is rescued from a car crash by a fan of his novels, he comes to realize that the care he is receiving is only the beginning of a nightmare of captivity and abuse."
+    },
+    {
+      "id": 4,
+      "title": "Dawn of the Dead",
+      "director": "George Romero",
+      "released": 1978,
+      "rating": 3,
+      "genre": "Horror",
+      "movieSummary": "During an escalating zombie epidemic, two Philadelphia SWAT team members, a traffic reporter and his TV executive girlfriend seek refuge in a secluded shopping mall."
+    },
+    {
+      "title": "Fletch",
+      "rating": 4,
+      "genre": "Comedy",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "title": "The Dark Knight",
+      "director": "Christopher Nolan",
+      "released": 2008,
+      "rating": 4,
+      "genre": "Action",
+      "movieSummary": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+    },
+    {
+      "title": "Phantasm",
+      "rating": 5,
+      "genre": "Horror",
+      "movieSummary": "Super awesome!",
+      "id": 8
+    },
+    {
+      "title": "Fellowship of the Ring",
+      "rating": 3,
+      "genre": "fantasy",
+      "movieSummary": "way too long but Aragorn's pretty cool!",
+      "id": 9
+    },
+    {
+      "title": "The Shining",
+      "rating": 5,
+      "movieSummary": "Jack Nicholson hitting his peak.",
+      "id": 10
+    },
+    {
+      "title": "The Two Towers",
+      "rating": 3,
+      "genre": "fantasy",
+      "movieSummary": "eh, ok. soundtrack is good.",
+      "id": 11
     }
   ]
 }
