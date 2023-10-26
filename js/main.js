@@ -5,29 +5,50 @@ let movies = [];
 document.addEventListener("DOMContentLoaded", main);
 
 async function main(){
-    toggleLoadingMessage(true);
+    // toggleLoadingMessage(true);
     movies = await getMovieInfo();
-    toggleLoadingMessage(false);
-
+    // toggleLoadingMessage(false);
+    // console.log(movies)
     displayMovies(movies)
-
+    console.log(getMovieFromMovieArray(1))
 
 }
 
-function toggleLoadingMessage(show){
-    if(show) {
-        document.querySelector().classList.remove("")
-    } else {
-        document.querySelector().classList.add("")
-    }
-}
+// function toggleLoadingMessage(show){
+//     if(show) {
+//         document.querySelector().classList.remove("")
+//     } else {
+//         document.querySelector().classList.add("")
+//     }
+// }
 
 let movieCard = document.querySelector("#movieCard")
 
+
+// add card
 function displayMovies(movies){
-    movieCard.innerHTML("")
+    movieCard.innerHTML = "";
+
     for (let i = 0; i < movies.length; i++) {
-        let movie = generateCards(movies[i]);
-        movieCard.innerHTML = `<img src=${movie.poster} class="card-img-top" alt="${movie.title} poster"><div class="card-body"><h5 class="card-title">Title: ${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.summary}</p><button class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>edit</button><button class="btn btn-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16"><path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/></svg>delete</button></div></div>`
+        let movie = movies[i]
+        let card = document.createElement("div");
+        card.classList.add("d-flex")
+        card.innerHTML = `<div class="card-body"><h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.movieSummary}</p><button data-id="${movie.id}" class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>edit</button><button data-id="${movie.id}" class="btn btn-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16"><path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/></svg>delete</button></div></div>`
+        movieCard.appendChild(card)
     }
+}
+//update card
+
+
+function getMovieFromMovieArray(movieID){
+    for (let i = 0; i < movies.length; i++) {
+        if(movieID === movies[i].id){
+            return movies[i]
+        }
+    }
+}
+
+
+function findUpdateCard(){
+
 }
