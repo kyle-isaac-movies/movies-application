@@ -1,11 +1,11 @@
 {
   "movies": [
     {
+      "id": 1,
       "title": "Blade Runner",
-      "rating": 5,
       "genre": "Science-fiction action",
-      "movieSummary": "A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator.",
-      "id": 1
+      "rating": "5",
+      "movieSummary": "A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
     },
     {
       "id": 3,
