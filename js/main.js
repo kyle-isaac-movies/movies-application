@@ -1,4 +1,4 @@
-import {getMovieInfo, updateMovie} from "./movies-api.js";
+import {addMovie, deleteMovie, getMovieInfo, updateMovie} from "./movies-api.js";
 
 let movies = [];
 
@@ -13,11 +13,7 @@ async function main(){
 }
 
 let movieCardDisplay = document.querySelector("#movieCard")
-let updateId = document.querySelector("#id")
-let updateGenre = document.querySelector("#genre")
-let updateTitle = document.querySelector("#editInputTitle")
-let updateRating = document.querySelector("#editRating")
-let updateSummary = document.querySelector("#updateSummary")
+
 
 // add card
 // function displayMovies(movies){
@@ -35,6 +31,7 @@ let updateSummary = document.querySelector("#updateSummary")
 // }
 
 function displayMovies(movies){
+    movieCardDisplay.innerHTML = "";
     for (let i = 0; i < movies.length; i++) {
         let movie = movies[i];
         let cards = document.createElement("div");
@@ -49,7 +46,7 @@ function makeMovieCard(movie){
     card.classList.add("card", "mt-3");
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
-    cardBody.innerHTML = `<h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.movieSummary}</p>`
+    cardBody.innerHTML = `<h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p>Genre: ${movie.genre}</p><p class="card-text">Summary: ${movie.movieSummary}</p>`
     card.appendChild(cardBody)
     let editBtn = document.createElement("button")
     editBtn.classList.add("btn", "btn-warning")
@@ -61,12 +58,43 @@ function makeMovieCard(movie){
     let deleteBtn = document.createElement("button")
     deleteBtn.classList.add("btn", "btn-danger")
     deleteBtn.setAttribute("data-id", movie.id)
-    deleteBtn.addEventListener("click", findUpdateCard)
+    deleteBtn.addEventListener("click", deleteCard)
     card.appendChild(deleteBtn)
     return card
 }
+
+// add Card
+
+let addGenre = document.querySelector("#genre")
+let addTitle = document.querySelector("#inputTitle")
+let addRating = document.querySelector("#addRating")
+let addSummary = document.querySelector("#addSummary")
+document.querySelector("#addMovie").addEventListener("click", addMovieForm)
+let addMovieFormData = document.querySelector("#addMovieForm")
+// let closeForm = document.querySelector("#closeModal");
+
+async function addMovieForm(e){
+    e.preventDefault()
+    let movie = {
+        title: addTitle.value,
+        genre: addGenre.value,
+        rating: addRating.value,
+        movieSummary: addSummary.value
+    }
+    addMovie(movie).then(r => r)
+    addMovieFormData.reset()
+    movies = await getMovieInfo();
+    displayMovies(movies)
+}
+
 //update card
 
+let updateId = document.querySelector("#id")
+let updateGenre = document.querySelector("#genre")
+let updateTitle = document.querySelector("#editInputTitle")
+let updateRating = document.querySelector("#editRating")
+let updateSummary = document.querySelector("#updateSummary")
+let closeForm = document.querySelector("#closeModal");
 
 function getMovieFromMovieArray(movieID){
     for (let i = 0; i < movies.length; i++) {
@@ -93,7 +121,7 @@ function populateEditForm(movie){
 
 let updateSubmit = document.querySelector("#submitUpdate").addEventListener("click", updateMovieForm)
 
-function updateMovieForm(){
+async function updateMovieForm(){
     let movie = {
         id: updateId.value,
         title: updateTitle.value,
@@ -102,4 +130,16 @@ function updateMovieForm(){
         movieSummary: updateSummary.value
     }
     updateMovie(movie.id, movie).then(r => r)
+    closeForm.click()
+    movies = await getMovieInfo();
+    displayMovies(movies)
+}
+
+// Delete Card
+
+async function deleteCard() {
+    let movieID = this.getAttribute("data-id")
+    deleteMovie(movieID).then(r => r)
+    movies = await getMovieInfo();
+    displayMovies(movies)
 }

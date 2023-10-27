@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="closeModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="submitUpdate">Understood</button>
                     </div>
                 </form>
@@ -94,17 +94,21 @@
             <div class="card-body">
                 Add Movie
                 <hr>
-                <form>
+                <form id="addMovieForm">
                     <div class="row mb-3">
                         <label for="inputTitle" class="col-sm-2 col-form-label">Title:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 mb-3">
                             <input type="text" class="form-control" id="inputTitle">
+                        </div>
+                        <label for="inputGenre" class="col-sm-2 col-form-label">Genre:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputGenre">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="rating" class="col-sm-2 col-form-label">Rating:</label>
+                        <label for="addRating" class="col-sm-2 col-form-label">Rating:</label>
                         <div class="col-sm-10">
-                            <select id="rating" class="col-sm-4 form-select" aria-label="Default select example">
+                            <select id="addRating" class="col-sm-4 form-select" aria-label="Default select example">
                                 <option selected value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -114,12 +118,12 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="summary" class="col-sm-2 col-form-label">Summary:</label>
+                        <label for="addSummary" class="col-sm-2 col-form-label">Summary:</label>
                         <div class="col-sm-10">
-                            <textarea style="resize: none" class="form-control" id="summary" rows="3"></textarea>
+                            <textarea style="resize: none" class="form-control" id="addSummary" rows="3"></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Movie</button>
+                    <button type="submit" id="addMovie" class="btn btn-primary">Submit Movie</button>
                 </form>
             </div>
         </div>
