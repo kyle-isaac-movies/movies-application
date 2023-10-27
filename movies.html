@@ -9,9 +9,9 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body onload="myFunction()">
+<body>
 
-<div class="loader">
+<div class="loader position-absolute z-3" id="loader">
     <div id="cd">
         <div class="remix" role="img" aria-label="Spinning CD made with CSS"></div>
         <svg width="0" height="0">
@@ -24,7 +24,6 @@
     </div>
 </div>
 
-<div style="display:none;" id="all">
 <!-- NavBar-->
     <nav class="navbar bg-body-tertiary mb-3">
         <div class="container-fluid">
@@ -43,6 +42,51 @@
             </form>
         </div>
     </nav>
+<!--modal-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Movie</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="id">
+                    <input type="hidden" id="genre">
+                    <div class="row mb-3">
+                        <label for="editInputTitle" class="col-sm-2 col-form-label">Title:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="editInputTitle">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="rating" class="col-sm-2 col-form-label">Rating:</label>
+                        <div class="col-sm-10">
+                            <select id="editRating" class="col-sm-4 form-select" aria-label="Default select example">
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="updateSummary" class="col-sm-2 col-form-label">Summary:</label>
+                        <div class="col-sm-10">
+                            <textarea style="resize: none" class="form-control" id="updateSummary" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="submitUpdate">Understood</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!--    all content-->
     <div class="container">
 <!--        Form for adding movie-->
@@ -81,24 +125,8 @@
         </div>
 <!--    cards for movies-->
         <div id="movieCard" class="d-flex flex-wrap justify-content-around">
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="img/star-wars.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">movie title</h5>
-                    <p>rating</p>
-                    <p class="card-text">summary</p>
-                    <button class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg>edit</button>
-                    <button class="btn btn-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                    </svg>delete</button>
-                </div>
-            </div>
         </div>
     </div>
-</div>
 <script src="js/loader.js"></script>
 <script type="module" src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

@@ -1,4 +1,4 @@
-import {getMovieInfo} from "./movies-api.js";
+import {getMovieInfo, updateMovie} from "./movies-api.js";
 
 let movies = [];
 
@@ -6,41 +6,71 @@ document.addEventListener("DOMContentLoaded", main);
 
 async function main(){
     movies = await getMovieInfo();
-    // console.log(movies)
+    document.querySelector("#loader").classList.add("hideSpinner")
+
     displayMovies(movies)
-    console.log(getMovieFromMovieArray(1))
 
 }
 
-// function toggleLoadingMessage(show){
-//     if(show) {
-//         document.querySelector().classList.remove("")
-//     } else {
-//         document.querySelector().classList.add("")
-//     }
-// }
-
-let movieCard = document.querySelector("#movieCard")
-
+let movieCardDisplay = document.querySelector("#movieCard")
+let updateId = document.querySelector("#id")
+let updateGenre = document.querySelector("#genre")
+let updateTitle = document.querySelector("#editInputTitle")
+let updateRating = document.querySelector("#editRating")
+let updateSummary = document.querySelector("#updateSummary")
 
 // add card
-function displayMovies(movies){
-    movieCard.innerHTML = "";
+// function displayMovies(movies){
+//     movieCard.innerHTML = "";
+//
+//     for (let i = 0; i < movies.length; i++) {
+//         let movie = movies[i]
+//         let card = document.createElement("div");
+//         card.classList.add("d-flex")
+//         card.innerHTML = `<div class="card mt-3" style="width: 18rem;"><div class="card-body"><h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.movieSummary}</p><button data-id="${movie.id}" class="btn btn-warning editBtns" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">edit</button><button data-id="${movie.id}" class="btn btn-danger" type="button">delete</button></div></div>`
+//         movieCard.appendChild(card)
+//         // document.querySelector(".editBtn").addEventListener("click")
+//     }
+//
+// }
 
+function displayMovies(movies){
     for (let i = 0; i < movies.length; i++) {
-        let movie = movies[i]
-        let card = document.createElement("div");
-        card.classList.add("d-flex")
-        card.innerHTML = `<div class="card mt-3" style="width: 18rem;"><div class="card-body"><h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.movieSummary}</p><button data-id="${movie.id}" class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>edit</button><button data-id="${movie.id}" class="btn btn-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16"><path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/></svg>delete</button></div></div>`
-        movieCard.appendChild(card)
+        let movie = movies[i];
+        let cards = document.createElement("div");
+        cards.classList.add("d-flex")
+        let movieCard = makeMovieCard(movie)
+        cards.appendChild(movieCard)
+        movieCardDisplay.appendChild(cards)
     }
+}
+function makeMovieCard(movie){
+    let card = document.createElement("div");
+    card.classList.add("card", "mt-3");
+    let cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    cardBody.innerHTML = `<h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.movieSummary}</p>`
+    card.appendChild(cardBody)
+    let editBtn = document.createElement("button")
+    editBtn.classList.add("btn", "btn-warning")
+    editBtn.setAttribute("data-id", movie.id)
+    editBtn.setAttribute("data-bs-toggle", "modal")
+    editBtn.setAttribute("data-bs-target", "#staticBackdrop")
+    editBtn.addEventListener("click", findUpdateCard)
+    card.appendChild(editBtn)
+    let deleteBtn = document.createElement("button")
+    deleteBtn.classList.add("btn", "btn-danger")
+    deleteBtn.setAttribute("data-id", movie.id)
+    deleteBtn.addEventListener("click", findUpdateCard)
+    card.appendChild(deleteBtn)
+    return card
 }
 //update card
 
 
 function getMovieFromMovieArray(movieID){
     for (let i = 0; i < movies.length; i++) {
-        if(movieID === movies[i].id){
+        if(movieID == movies[i].id){
             return movies[i]
         }
     }
@@ -48,5 +78,28 @@ function getMovieFromMovieArray(movieID){
 
 
 function findUpdateCard(){
+    let movieID = this.getAttribute("data-id")
+    let movie = getMovieFromMovieArray(movieID)
+    populateEditForm(movie)
+}
 
+function populateEditForm(movie){
+    updateId.value = movie.id;
+    updateGenre.value = movie.genre;
+    updateTitle.value = movie.title
+    updateRating.value = movie.rating
+    updateSummary.value = movie.movieSummary
+}
+
+let updateSubmit = document.querySelector("#submitUpdate").addEventListener("click", updateMovieForm)
+
+function updateMovieForm(){
+    let movie = {
+        id: updateId.value,
+        title: updateTitle.value,
+        genre: updateGenre.value,
+        rating: updateRating.value,
+        movieSummary: updateSummary.value
+    }
+    updateMovie(movie.id, movie).then(r => r)
 }

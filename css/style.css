@@ -14,7 +14,9 @@
     justify-content: center;
     align-items: center;
 }
-
+.hideSpinner{
+    display: none;
+}
 #all {
     display: none;
 }
