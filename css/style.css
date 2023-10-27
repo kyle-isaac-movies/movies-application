@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+
+
 .loader {
     position: absolute;
     top: 0;
@@ -129,4 +131,50 @@
 
 svg {
     margin-right: 10px;
+}
+
+#movieCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.separateCard {
+    height: 100px;
+    width: 350px;
+}
+
+.modifyBtn {
+    height: 50px;
+    width: 50px;
+}
+
+.card-footer {
+    display: flex;
+}
+i {
+    font-size: 30px;
+}
+
+.navbar {
+    background-color: #2d2d2d;
+}
+
+.navbar .navbar-brand{
+    color: #faebd7;
+}
+
+#addBtn, #searchBtn, #edit, .card-body, p, h5.card-title, label, #form, .modal-body {
+    background-color: #1e1e1e;
+    color: #faebd7;
+}
+
+#foot, #addMovie, #closeModal, #submitUpdate, .modal-header {
+    background-color: #2d2d2d;
+    color: #faebd7;
+}
+
+#closeBtn, #delete {
+    background-color: #870000;
 }

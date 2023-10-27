@@ -43,23 +43,31 @@ function displayMovies(movies){
 }
 function makeMovieCard(movie){
     let card = document.createElement("div");
-    card.classList.add("card", "mt-3");
+    card.classList.add("card", "mt-3", "separateCard");
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
     cardBody.innerHTML = `<h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p>Genre: ${movie.genre}</p><p class="card-text">Summary: ${movie.movieSummary}</p>`
     card.appendChild(cardBody)
+    let footer = document.createElement("div")
+    footer.classList.add("card-footer", "justify-content-evenly");
+    footer.id = "foot";
+    card.appendChild(footer)
     let editBtn = document.createElement("button")
-    editBtn.classList.add("btn", "btn-warning")
+    editBtn.innerHTML = "<i class=\"fa-solid fa-pen-to-square\" style=\"color: #faebd7;\"></i>"
+    editBtn.classList.add("btn", "modifyBtn")
+    editBtn.id="edit"
     editBtn.setAttribute("data-id", movie.id)
     editBtn.setAttribute("data-bs-toggle", "modal")
     editBtn.setAttribute("data-bs-target", "#staticBackdrop")
     editBtn.addEventListener("click", findUpdateCard)
-    card.appendChild(editBtn)
+    footer.appendChild(editBtn)
     let deleteBtn = document.createElement("button")
-    deleteBtn.classList.add("btn", "btn-danger")
+    deleteBtn.innerHTML = "<i class=\"fa-regular fa-trash-can\" style=\"color: #faebd7;\"></i>"
+    deleteBtn.classList.add("btn", "modifyBtn")
+    deleteBtn.id="delete"
     deleteBtn.setAttribute("data-id", movie.id)
     deleteBtn.addEventListener("click", deleteCard)
-    card.appendChild(deleteBtn)
+    footer.appendChild(deleteBtn)
     return card
 }
 
@@ -69,7 +77,8 @@ let addGenre = document.querySelector("#genre")
 let addTitle = document.querySelector("#inputTitle")
 let addRating = document.querySelector("#addRating")
 let addSummary = document.querySelector("#addSummary")
-document.querySelector("#addMovie").addEventListener("click", addMovieForm)
+let addButton = document.querySelector("#addMovie"); addButton.addEventListener("click", addMovieForm)
+let formToggle = document.querySelector("#addBtn")
 let addMovieFormData = document.querySelector("#addMovieForm")
 // let closeForm = document.querySelector("#closeModal");
 
@@ -83,6 +92,7 @@ async function addMovieForm(e){
     }
     addMovie(movie).then(r => r)
     addMovieFormData.reset()
+    formToggle.click()
     movies = await getMovieInfo();
     displayMovies(movies)
 }
@@ -143,3 +153,22 @@ async function deleteCard() {
     movies = await getMovieInfo();
     displayMovies(movies)
 }
+
+async function searchIt () {
+    let searcher = document.getElementById('searchbar')
+    let filter = searcher.value.toLowerCase()
+    let newList = []
+    let movies = await getMovieInfo();
+    movies.forEach(function(movies) {
+        let searchMovies = movies.title.toLowerCase()
+        let x = searchMovies.includes(filter)
+        if (x) {
+            newList.push(movies)
+            displayMovies(newList)
+        }
+    })
+}
+document.addEventListener('DOMContentLoaded', function() {
+    let searchBar = document.getElementById('searchbar');
+    searchBar.addEventListener('keyup', searchIt);
+});

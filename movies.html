@@ -9,8 +9,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body>
-
+<body class="bg-black">
 <div class="loader position-absolute z-3" id="loader">
     <div id="cd">
         <div class="remix" role="img" aria-label="Spinning CD made with CSS"></div>
@@ -23,19 +22,18 @@
         </svg>
     </div>
 </div>
-
 <!-- NavBar-->
-    <nav class="navbar bg-body-tertiary mb-3">
+    <nav class="navbar mb-3">
         <div class="container-fluid">
             <a class="navbar-brand">Kyle & Isaac's Movies</a>
             <form class="d-flex" role="search">
-                <button id="addBtn" class="btn btn-info me-2 text-nowrap" type="button">
+                <button data-bs-toggle="collapse" data-bs-target="#movieForm" id="addBtn" class="btn me-2 text-nowrap" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     </svg>Add Movie</button>
                     <input id="searchbar" class="form-control me-2" type="search" placeholder="Search Movies" aria-label="Search">
-                    <button id="searchBtn" class="btn btn-outline-success text-nowrap" type="button">
+                    <button id="searchBtn" class="btn btn-outline text-nowrap" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>search</button>
@@ -48,7 +46,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Movie</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button id="closeBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -61,7 +59,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="rating" class="col-sm-2 col-form-label">Rating:</label>
+                        <label for="editRating" class="col-sm-2 col-form-label">Rating:</label>
                         <div class="col-sm-10">
                             <select id="editRating" class="col-sm-4 form-select" aria-label="Default select example">
                                 <option selected value="1">1</option>
@@ -79,8 +77,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="closeModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="submitUpdate">Understood</button>
+                        <button id="closeModal" type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn" id="submitUpdate">Understood</button>
                     </div>
                 </form>
             </div>
@@ -90,8 +88,8 @@
 <!--    all content-->
     <div class="container">
 <!--        Form for adding movie-->
-        <div id="movieForm" class="card">
-            <div class="card-body">
+        <div id="movieForm" class="card collapse">
+            <div id="form" class="card-body">
                 Add Movie
                 <hr>
                 <form id="addMovieForm">
@@ -123,16 +121,20 @@
                             <textarea style="resize: none" class="form-control" id="addSummary" rows="3"></textarea>
                         </div>
                     </div>
-                    <button type="submit" id="addMovie" class="btn btn-primary">Submit Movie</button>
+                    <button type="submit" id="addMovie" class="btn">Submit Movie</button>
                 </form>
             </div>
         </div>
 <!--    cards for movies-->
-        <div id="movieCard" class="d-flex flex-wrap justify-content-around">
+        <div>
+            <div id="movieCard">
+
+            </div>
         </div>
     </div>
 <script src="js/loader.js"></script>
 <script type="module" src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/024077abe7.js" crossorigin="anonymous"></script>
 </body>
 </html>
