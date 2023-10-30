@@ -1,5 +1,6 @@
 
 // get all movies
+
 export async function getMovieInfo() {
     return fetch('http://localhost:3000/movies')
         .then(response => response.json())

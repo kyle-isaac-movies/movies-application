@@ -5,7 +5,8 @@
       "title": "Blade Runner",
       "genre": "Science-fiction action",
       "rating": "5",
-      "movieSummary": "A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator."
+      "movieSummary": "A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator!",
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
     },
     {
       "id": 3,
@@ -14,7 +15,8 @@
       "released": 1990,
       "rating": 4,
       "genre": "Thriller",
-      "movieSummary": "After a famous author is rescued from a car crash by a fan of his novels, he comes to realize that the care he is receiving is only the beginning of a nightmare of captivity and abuse."
+      "movieSummary": "After a famous author is rescued from a car crash by a fan of his novels, he comes to realize that the care he is receiving is only the beginning of a nightmare of captivity and abuse.",
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BNzY0ODQ3MTMxN15BMl5BanBnXkFtZTgwMDkwNTg4NjE@._V1_SX300.jpg"
     },
     {
       "id": 4,
@@ -23,13 +25,15 @@
       "released": 1978,
       "rating": 3,
       "genre": "Horror",
-      "movieSummary": "During an escalating zombie epidemic, two Philadelphia SWAT team members, a traffic reporter and his TV executive girlfriend seek refuge in a secluded shopping mall."
+      "movieSummary": "During an escalating zombie epidemic, two Philadelphia SWAT team members, a traffic reporter and his TV executive girlfriend seek refuge in a secluded shopping mall.",
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BN2M2ZmU2OGQtNmU5Yi00MTIyLTgwNWMtYjljMzZlYTdiNjBhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
     },
     {
       "title": "Fletch",
       "rating": 4,
       "genre": "Comedy",
-      "id": 5
+      "id": 5,
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BMzQ4MWI3YTYtNzlkNS00Zjc0LWI5MWItMTQwZDYzMzc1MzQ2XkEyXkFqcGdeQXVyNjE5MjUyOTM@._V1_SX300.jpg"
     },
     {
       "id": 6,
@@ -38,34 +42,40 @@
       "released": 2008,
       "rating": 4,
       "genre": "Action",
-      "movieSummary": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+      "movieSummary": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg"
     },
     {
       "title": "Phantasm",
       "rating": 5,
       "genre": "Horror",
       "movieSummary": "Super awesome!",
-      "id": 8
+      "id": 8,
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BZTdmN2RkODEtODM4ZS00ZGRlLTliMTYtYmZmZWZkMTZmODYxL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
     },
     {
       "title": "Fellowship of the Ring",
       "rating": 3,
       "genre": "fantasy",
       "movieSummary": "way too long but Aragorn's pretty cool!",
-      "id": 9
-    },
-    {
-      "title": "The Shining",
-      "rating": 5,
-      "movieSummary": "Jack Nicholson hitting his peak.",
-      "id": 10
+      "id": 9,
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"
     },
     {
       "title": "The Two Towers",
       "rating": 3,
       "genre": "fantasy",
       "movieSummary": "eh, ok. soundtrack is good.",
-      "id": 11
+      "id": 11,
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BZGMxZTdjZmYtMmE2Ni00ZTdkLWI5NTgtNjlmMjBiNzU2MmI5XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+    },
+    {
+      "title": "Shining",
+      "genre": "Drama, Horror",
+      "rating": "4",
+      "movieSummary": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
+      "movieUrl": "https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "id": 12
     }
   ]
 }
