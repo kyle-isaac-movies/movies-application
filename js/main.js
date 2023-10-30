@@ -1,5 +1,5 @@
 import {addMovie, deleteMovie, getMovieInfo, updateMovie} from "./movies-api.js";
-
+import {POSTER_IP} from "./keys.js"
 let movies = [];
 
 document.addEventListener("DOMContentLoaded", main);
@@ -9,26 +9,11 @@ async function main(){
     document.querySelector("#loader").classList.add("hideSpinner")
 
     displayMovies(movies)
-
+    // console.log(await getPosterInfo("Blade Runner"))
+    console.log(await getAddMovieInfo("Jumanji"))
 }
 
 let movieCardDisplay = document.querySelector("#movieCard")
-
-
-// add card
-// function displayMovies(movies){
-//     movieCard.innerHTML = "";
-//
-//     for (let i = 0; i < movies.length; i++) {
-//         let movie = movies[i]
-//         let card = document.createElement("div");
-//         card.classList.add("d-flex")
-//         card.innerHTML = `<div class="card mt-3" style="width: 18rem;"><div class="card-body"><h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p class="card-text">Summary: ${movie.movieSummary}</p><button data-id="${movie.id}" class="btn btn-warning editBtns" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">edit</button><button data-id="${movie.id}" class="btn btn-danger" type="button">delete</button></div></div>`
-//         movieCard.appendChild(card)
-//         // document.querySelector(".editBtn").addEventListener("click")
-//     }
-//
-// }
 
 function displayMovies(movies){
     movieCardDisplay.innerHTML = "";
@@ -46,7 +31,7 @@ function makeMovieCard(movie){
     card.classList.add("card", "mt-3", "separateCard");
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
-    cardBody.innerHTML = `<h5 class="card-title">${movie.title}</h5><p>Rating: ${movie.rating}</p><p>Genre: ${movie.genre}</p><p class="card-text">Summary: ${movie.movieSummary}</p>`
+    cardBody.innerHTML = `<h5 class="card-title">${movie.title}</h5><img alt="${movie.title}" src="${movie.movieUrl}"> <p>Rating: ${movie.rating}</p><p>Genre: ${movie.genre}</p><p class="card-text">Summary: ${movie.movieSummary}</p>`
     card.appendChild(cardBody)
     let footer = document.createElement("div")
     footer.classList.add("card-footer", "justify-content-evenly");
@@ -84,11 +69,13 @@ let addMovieFormData = document.querySelector("#addMovieForm")
 
 async function addMovieForm(e){
     e.preventDefault()
+    let movieData = await getAddMovieInfo(addTitle.value)
     let movie = {
         title: addTitle.value,
-        genre: addGenre.value,
+        genre: movieData.genre,
         rating: addRating.value,
-        movieSummary: addSummary.value
+        movieSummary: movieData.movieSummary,
+        movieUrl: movieData.movieUrl
     }
     addMovie(movie).then(r => r)
     addMovieFormData.reset()
@@ -101,6 +88,7 @@ async function addMovieForm(e){
 
 let updateId = document.querySelector("#id")
 let updateGenre = document.querySelector("#genre")
+let updateUrl = document.querySelector("#movieUrl")
 let updateTitle = document.querySelector("#editInputTitle")
 let updateRating = document.querySelector("#editRating")
 let updateSummary = document.querySelector("#updateSummary")
@@ -124,6 +112,7 @@ function findUpdateCard(){
 function populateEditForm(movie){
     updateId.value = movie.id;
     updateGenre.value = movie.genre;
+    updateUrl.value = movie.movieUrl
     updateTitle.value = movie.title
     updateRating.value = movie.rating
     updateSummary.value = movie.movieSummary
@@ -137,7 +126,8 @@ async function updateMovieForm(){
         title: updateTitle.value,
         genre: updateGenre.value,
         rating: updateRating.value,
-        movieSummary: updateSummary.value
+        movieSummary: updateSummary.value,
+        movieUrl:  await getPosterInfo(updateTitle.value)
     }
     updateMovie(movie.id, movie).then(r => r)
     closeForm.click()
@@ -172,3 +162,28 @@ document.addEventListener('DOMContentLoaded', function() {
     let searchBar = document.getElementById('searchbar');
     searchBar.addEventListener('keyup', searchIt);
 });
+
+    // poster request
+export async function getPosterInfo(movieTitle) {
+    return fetch(`https://www.omdbapi.com/?apikey=${POSTER_IP}&t=${movieTitle}`)
+        .then( response => response.json())
+        .then(data => {
+           let movieUrl = data.Poster
+            return movieUrl
+        })
+        .catch(error => console.error(error));
+}
+
+export async function getAddMovieInfo(movieTitle) {
+    return fetch(`https://www.omdbapi.com/?apikey=${POSTER_IP}&t=${movieTitle}`)
+        .then( response => response.json())
+        .then(data => {
+           let movie = {
+               movieSummary: data.Plot,
+               genre: data.Genre,
+                movieUrl: data.Poster
+            }
+            return movie
+        })
+        .catch(error => console.error(error));
+}
